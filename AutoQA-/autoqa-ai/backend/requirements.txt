@@ -1,0 +1,12 @@
+flask
+flask-cors
+flask-jwt-extended
+bcrypt
+psycopg2-binary
+groq
+python-dotenv
+playwright
+requests
+pytest
+pytest-mock
+gunicorn
