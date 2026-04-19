@@ -44,6 +44,10 @@ def db_save(query, params):
         app.logger.error(f"[DB Error] {e}")
         raise e
 
+@app.route("/", methods=["GET"])
+def health_check():
+    return jsonify({"status": "online", "message": "AutoQA API is running perfectly!"}), 200
+
 # ── Auth ──────────────────────────────────────────────────────────────────────
 @app.route("/auth/register", methods=["POST"])
 def register():
