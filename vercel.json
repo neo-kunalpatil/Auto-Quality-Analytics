@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "AutoQA-/autoqa-ai/frontend/build",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "auto-quality-analytics-root",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd AutoQA-/autoqa-ai/frontend && npm install && npm run build"
+  }
+}
