@@ -28,8 +28,17 @@ from agents.repo_intelligence_agent import RepoIntelligenceAgent
 from database.db import execute_query
 
 app = Flask(__name__)
-frontend_origin = os.getenv("FRONTEND_URL", "http://localhost:3000").rstrip("/")
-CORS(app, supports_credentials=True, origins=[frontend_origin, "http://localhost:3000"])
+frontend_url_env = os.getenv("FRONTEND_URL", "http://localhost:3000")
+frontend_origins = [origin.strip().rstrip("/") for origin in frontend_url_env.split(",") if origin.strip()]
+if "http://localhost:3000" not in frontend_origins:
+    frontend_origins.append("http://localhost:3000")
+
+import re
+# Allow Vercel preview and production domains dynamically to fix CORS
+vercel_regex = re.compile(r"https://auto-quality-analytics.*\.vercel\.app")
+frontend_origins.append(vercel_regex)
+
+CORS(app, supports_credentials=True, origins=frontend_origins)
 
 from dotenv import load_dotenv
 load_dotenv(override=True)
